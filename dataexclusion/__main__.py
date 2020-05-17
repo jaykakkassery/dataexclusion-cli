@@ -1,17 +1,20 @@
 import sys
-import mysql.connector
-import argparse
-import subprocess
-import os
 
 def main():
     import csv
     import argparse
 
     parser = argparse.ArgumentParser()
+    if len(sys.argv) < 2:
+        parser.print_usage()
+        sys.exit(1)
     parser.add_argument('-m', '--mainfile', help='Provide main file')
-    parser.add_argument('-f', '--filterfile', help='Provide filter file', default='employee')
-    args = parser.parse_args()
+    parser.add_argument('-f', '--filterfile', help='Provide exclusion file')
+    try:
+        args = parser.parse_args()
+    except:
+        parser.print_help()
+        sys.exit(0)
 
     f1 = open(args.mainfile, 'r')
     f2 = open(args.filterfile, 'r')
@@ -24,10 +27,9 @@ def main():
 
     masterlist = list(c2)
 
-    for fist_row in c1:  # secondfile
-        row = 1
+    for fist_row in c1:
         found = False
-        for second_row in masterlist:  # firstfile
+        for second_row in masterlist:
             results_row = fist_row
             if (fist_row[0] == second_row[0]):
                 found = True
