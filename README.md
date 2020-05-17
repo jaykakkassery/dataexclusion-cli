@@ -1,4 +1,4 @@
-A Python cli that takes two csv files, and remove all occurrences of second csv in first one.
+A Python cli that takes two csv files, and check if any values in the first csv is present in the first once. If it is, it will remove that occurrences in first csv. The result will be stored in result.csv.
 
 1)Download the source <br>
 2)pip instal -e . in the downloaded folder <br>
